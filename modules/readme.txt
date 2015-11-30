@@ -5,3 +5,6 @@
 #
 # Date: 2015-11-27
 
+
+1. spring-mvc                   4.2.3
+   Note: http://maven.springframework.org/release/org/springframework/spring/4.2.3.RELEASE/
