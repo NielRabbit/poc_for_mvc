@@ -17,3 +17,4 @@
 5. mybatis                      3.3.0
    Note: https://github.com/mybatis/mybatis-3/releases
 6. mysql-connector              5.1.38
+   Note: http://dev.mysql.com/downloads/connector/

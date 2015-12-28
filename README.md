@@ -18,6 +18,8 @@ $TOMCAT_HOME/webapps
 	           |--classes
 		      |
 		      |--(All class files)
+		      |--mybatis-conf.xml
+		      |
 		      
 		   |--conf
 		      |
