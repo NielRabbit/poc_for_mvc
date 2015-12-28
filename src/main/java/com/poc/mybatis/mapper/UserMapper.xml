@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.poc.mybatis.mapper.UserMapper">
+  
+  <resultMap id="userMap" type="com.poc.modelobjects.User">
+    <id property="id" column="id" />
+    <result property="username" column="email" />
+    <result property="firstName" column="first_name"/>
+    <result property="lastName" column="last_name"/>
+    <result property="password" column="password"/>
+  </resultMap>
+
+  <select id="getUser" parameterType="String" resultType="com.poc.modelobjects.User" resultMap="userMap">
+    select * from tb_users where email=#{username}
+  </select>
+</mapper>

@@ -10,6 +10,8 @@ import java.util.Date;
  *
  */
 public class MessageInfo {
+	
+	private long id;
 
 	private String timestamp;
 	
@@ -26,6 +28,17 @@ public class MessageInfo {
 		recipient = "";
 		subject = "";
 	}
+
+	
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 
 	public String getSender() {
 		return sender;

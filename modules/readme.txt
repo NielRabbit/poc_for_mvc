@@ -13,4 +13,7 @@
 3. jstl                         1.2
    Note: https://jstl.java.net/
 4. log4j                        1.2.17
-    Note: https://logging.apache.org/log4j/1.2/download.html
+   Note: https://logging.apache.org/log4j/1.2/download.html
+5. mybatis                      3.3.0
+   Note: https://github.com/mybatis/mybatis-3/releases
+6. mysql-connector              5.1.38

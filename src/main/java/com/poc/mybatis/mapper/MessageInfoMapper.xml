@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.poc.mybatis.mapper.MessageInfoMapper">
+  
+  <resultMap id="messagInfoMap" type="com.poc.modelobjects.MessageInfo">
+    <id property="id" column="id" />
+    <result property="timestamp" column="time" />
+    <result property="sender" column="sender"/>
+    <result property="recipient" column="rcpt"/>
+    <result property="subject" column="subject"/>
+  </resultMap>
+
+  <select id="selectAllMessageInfo" resultType="com.poc.modelobjects.MessageInfo" resultMap="messagInfoMap">
+    select * from tb_message_entity
+  </select>
+</mapper>

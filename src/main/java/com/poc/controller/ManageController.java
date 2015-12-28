@@ -12,7 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.poc.interceptor.CommonInterceptor;
+import com.poc.dao.DAOFactory;
+import com.poc.dao.IMessageInfoDAO;
 import com.poc.modelobjects.MessageInfo;
 
 /**
@@ -23,21 +24,17 @@ import com.poc.modelobjects.MessageInfo;
 @RequestMapping("/manage")
 public class ManageController {
 	
-	private final Logger log = LogManager.getLogger(CommonInterceptor.class.getName()); 
+	private final Logger log = LogManager.getLogger(ManageController.class.getName()); 
 
 	@RequestMapping(value="search", method={RequestMethod.POST, RequestMethod.GET})
 	public String search(ModelMap model)
 	{
-		log.debug("do search()...");
-        ArrayList<MessageInfo> mList = new ArrayList<MessageInfo>();
+		log.debug("[Niel] do search() [ManageController].");
+        		
+		ArrayList<MessageInfo> mList = null;
+		IMessageInfoDAO dao = DAOFactory.getMessageInfoDAO();
 		
-		MessageInfo mi = new MessageInfo();
-		mi.setSender("wolf@niel.com");
-		mi.setRecipient("rabbit@niel.com");
-		mi.setSubject("This is a love letter~~");
-		
-		mList.add(mi);
-		mList.add(mi);
+		mList = (ArrayList<MessageInfo>)dao.selectAll();
 		
 		model.addAttribute("mList", mList);
 		return "main";
