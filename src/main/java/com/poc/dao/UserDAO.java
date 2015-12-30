@@ -4,9 +4,9 @@
 package com.poc.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import com.poc.common.LogFactory;
 import com.poc.common.SqlSessionFactoryInstance;
 import com.poc.modelobjects.User;
 import com.poc.mybatis.mapper.UserMapper;
@@ -17,41 +17,35 @@ import com.poc.mybatis.mapper.UserMapper;
  */
 public class UserDAO implements IUserDAO {
 	
-	private final Logger log = LogManager.getLogger(UserDAO.class.getName());
-
 	/* (non-Javadoc)
 	 * @see com.poc.dao.IUserDAO#getUser(java.lang.String)
 	 */
 	@Override
 	public User getUser(String username) {
-		log.debug("[Niel] in getUser() [MessageInfoDAO].");
-		if(username == null)
-		{
-			log.error("[Niel] in getUser() [MessageInfoDAO], invalid parameter null for username.");
+		Logger log = LogFactory.getLogger();
+		
+		log.debug("[Niel] in getUser() [UserDAO].");
+		if(username == null) {
+			log.error("[Niel] in getUser() [UserDAO], invalid parameter null for username.");
 		}
 		
 		User user = null;
 		SqlSession session = SqlSessionFactoryInstance.createSession();
-		if(session != null)
-		{
-			try
-			{		
+		if(session != null)	{
+			try {		
 				UserMapper mapper = session.getMapper(UserMapper.class);
 		
 				user = mapper.getUser(username);
 			}
-			catch(Exception e)
-			{
+			catch(Exception e) {
 				e.printStackTrace();
 				log.error("[Niel] UserDAO exception: " + e.getMessage());	
 			}
-			finally
-			{
+			finally	{
 				if(session != null)    SqlSessionFactoryInstance.closeSession(session);
 			}
 		}
-		else
-		{
+		else {
 		    log.error("[Niel] session is null!!!");	
 		}
 		
@@ -59,5 +53,4 @@ public class UserDAO implements IUserDAO {
 		
 		return user;
 	}
-
 }

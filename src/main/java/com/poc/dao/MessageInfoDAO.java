@@ -29,26 +29,21 @@ public class MessageInfoDAO implements IMessageInfoDAO {
 		List<MessageInfo> result = null;
 		
 		SqlSession session = SqlSessionFactoryInstance.createSession();
-		if(session != null)
-		{
-			try
-			{		
+		if(session != null)	{
+			try	{		
 				MessageInfoMapper mapper = session.getMapper(MessageInfoMapper.class);
 		
 				result = mapper.selectAllMessageInfo();
 			}
-			catch(Exception e)
-			{
+			catch(Exception e) {
 				e.printStackTrace();
 				log.error("[Niel] MessageInfoDAO exception: " + e.getMessage());	
 			}
-			finally
-			{
+			finally	{
 				if(session != null)    SqlSessionFactoryInstance.closeSession(session);
 			}
 		}
-		else
-		{
+		else {
 		    log.error("[Niel] session is null!!!");	
 		}
 		

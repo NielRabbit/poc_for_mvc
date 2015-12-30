@@ -21,8 +21,7 @@ public class MessageInfo {
 	
 	private String subject;
 	
-	public MessageInfo()
-	{
+	public MessageInfo() {
 		timestamp = (new Date()).toString();
 		sender = "";
 		recipient = "";

@@ -10,7 +10,6 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
@@ -19,22 +18,21 @@ import org.apache.log4j.Logger;
  */
 public class SqlSessionFactoryInstance {
 	
-	private static final Logger log = LogManager.getLogger(SqlSessionFactoryInstance.class.getName()); 
+	private static Logger log = null; 
 	
 	private static String configFile = "mybatis-conf.xml";
 		
 	private static SqlSessionFactory ssf;	//the instance to hold the object of SqlSessionFactory, it exists for the whole application
 	
-	static 
-	{
+	static {
+		log = LogFactory.getLogger();
+		
 		log.debug("[Niel] SqlSessionFactoryInstance static area init...");
-		try
-		{
+		try	{
 			InputStream is = Resources.getResourceAsStream(configFile);
 			ssf = new SqlSessionFactoryBuilder().build(is);
 		}
-		catch(IOException e)
-		{
+		catch(IOException e) {
 			e.printStackTrace();
 			log.error("[Niel] SqlSessionFactoryInstance exception: " + e.getMessage());
 		}
@@ -45,19 +43,15 @@ public class SqlSessionFactoryInstance {
 	 * 
 	 * @return
 	 */
-	public static SqlSessionFactory getInstance()
-	{
-		if(ssf == null)
-		{
+	public static SqlSessionFactory getInstance() {
+		if(ssf == null) {
 			//Should not go here
 			log.info("[Niel] in getInstance() [SqlSessionFactoryInstance], and instance is null, will create new one.");
-			try
-			{
+			try	{
 				InputStream is = Resources.getResourceAsStream(configFile);
 				ssf = new SqlSessionFactoryBuilder().build(is);
 			}
-			catch(IOException e)
-			{
+			catch(IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -69,8 +63,7 @@ public class SqlSessionFactoryInstance {
 	 * 
 	 * @return
 	 */
-	public static SqlSession createSession()
-	{
+	public static SqlSession createSession() {
 		log.debug("[Niel] in createSession() [SqlSessionFactoryInstance].");
 		SqlSession session = ssf.openSession();
 		return session;
@@ -81,8 +74,7 @@ public class SqlSessionFactoryInstance {
 	 * 
 	 * @param session
 	 */
-	public static void closeSession(SqlSession session)
-	{
+	public static void closeSession(SqlSession session)	{
 		log.debug("[Niel] in closeSession() [SqlSessionFactoryInstance].");
 		if(session != null)
 			session.close();

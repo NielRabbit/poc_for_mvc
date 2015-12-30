@@ -18,10 +18,8 @@ public class DAOFactory {
 	 * 
 	 * @return
 	 */
-	public static IMessageInfoDAO getMessageInfoDAO()
-	{
-		if(messageInfoDAO == null)
-		{
+	public static IMessageInfoDAO getMessageInfoDAO() {
+		if(messageInfoDAO == null) {
 			messageInfoDAO = new MessageInfoDAO();
 		}
 		return messageInfoDAO;
@@ -32,10 +30,8 @@ public class DAOFactory {
 	 * 
 	 * @return
 	 */
-	public static IUserDAO getUserDAO()
-	{
-		if(userDAO == null)
-		{
+	public static IUserDAO getUserDAO()	{
+		if(userDAO == null)	{
 			userDAO = new UserDAO();
 		}
 		return userDAO;

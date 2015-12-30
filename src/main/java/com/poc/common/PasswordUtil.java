@@ -19,11 +19,11 @@ public class PasswordUtil {
 	 * @param plain
 	 * @return
 	 */
-	public static String encryptWithMD5(String plain)
-	{
+	public static String encryptWithMD5(String plain) {
 		String result = "";
 		
-		try{
+		try {
+			
 			MessageDigest md = MessageDigest.getInstance("MD5");
 		
 			md.update(plain.getBytes());
@@ -33,15 +33,13 @@ public class PasswordUtil {
 			int size = b.length;
 			char[] temp = new char[size*2];
 	    
-			for(int i = 0; i < size; ++i)
-			{
+			for(int i = 0; i < size; ++i) {
 				temp[2*i] = CH_TABLE[((b[i] >> 4) & 0x0f)];
 				temp[2*i + 1] = CH_TABLE[b[i] & 0x0f];
 			}
 			result = String.valueOf(temp);
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 		
